@@ -50,6 +50,11 @@ class RecieveViewController: UIViewController {
         self.location?.stopRangingBeacons(in: localBeaconRegion)
         self.location?.startRangingBeacons(in: localBeaconRegion)
     }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 
 }
 
@@ -124,6 +129,10 @@ extension RecieveViewController: CLLocationManagerDelegate
         }
        
     }
+    
+    
+    
+    
     
 }
 

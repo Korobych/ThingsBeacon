@@ -96,7 +96,6 @@ class BroadcastViewController: UIViewController {
         } else {
             
             sender.setTitle(buttonTitleState(), for: UIControlState.normal)
-//            UIApplication.shared.isIdleTimerDisabled = true
             self.statusLabel.text = labelTextStatus()
             self.broadcasting = !self.broadcasting
             // start broadcasting
@@ -140,6 +139,11 @@ class BroadcastViewController: UIViewController {
             runTimer()
         }
     }
+    
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     func runTimer() {
         _ = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(BroadcastViewController.brightnessDecreaser), userInfo: nil, repeats: false)
