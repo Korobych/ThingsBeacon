@@ -8,18 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
+    @IBOutlet weak var broadcastButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        broadcastButton.layer.cornerRadius = broadcastButton.frame.width / 1.75
+        broadcastButton.clipsToBounds = true
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 

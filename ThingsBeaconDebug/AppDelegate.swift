@@ -7,15 +7,24 @@
 //
 
 import UIKit
+import CoreLocation
+import CoreBluetooth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+//    private let locationManager: CLLocationManager = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+//        let uuid = UUID(uuidString: "F84A9451-DD4A-48A6-947E-608F76ED5393")
+//
+//        let beaconRegion: CLBeaconRegion = CLBeaconRegion(proximityUUID: uuid!, identifier: "korobo.beacon")
+//        beaconRegion.notifyEntryStateOnDisplay = true
+//        
+//        self.locationManager.delegate = self
+//        self.locationManager.startMonitoring(for: beaconRegion)
         return true
     }
 
@@ -25,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
+        print(#function)
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }

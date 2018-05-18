@@ -7,21 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		987E4A9B20AEC3B80055CEDC /* CoreLibs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E4A9A20AEC3B80055CEDC /* CoreLibs.swift */; };
 		98FDAE6D20A6ED4300BBD0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FDAE6C20A6ED4300BBD0CC /* AppDelegate.swift */; };
-		98FDAE6F20A6ED4300BBD0CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FDAE6E20A6ED4300BBD0CC /* ViewController.swift */; };
+		98FDAE6F20A6ED4300BBD0CC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FDAE6E20A6ED4300BBD0CC /* MainViewController.swift */; };
 		98FDAE7220A6ED4300BBD0CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98FDAE7020A6ED4300BBD0CC /* Main.storyboard */; };
 		98FDAE7420A6ED4400BBD0CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98FDAE7320A6ED4400BBD0CC /* Assets.xcassets */; };
 		98FDAE7720A6ED4400BBD0CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98FDAE7520A6ED4400BBD0CC /* LaunchScreen.storyboard */; };
+		98FDAE7F20A6F17600BBD0CC /* BroadcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FDAE7E20A6F17600BBD0CC /* BroadcastViewController.swift */; };
+		98FDAE8120A6F19E00BBD0CC /* RecieveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FDAE8020A6F19E00BBD0CC /* RecieveViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		987E4A9A20AEC3B80055CEDC /* CoreLibs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLibs.swift; sourceTree = "<group>"; };
 		98FDAE6920A6ED4300BBD0CC /* ThingsBeaconDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThingsBeaconDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98FDAE6C20A6ED4300BBD0CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		98FDAE6E20A6ED4300BBD0CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		98FDAE6E20A6ED4300BBD0CC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		98FDAE7120A6ED4300BBD0CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		98FDAE7320A6ED4400BBD0CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98FDAE7620A6ED4400BBD0CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98FDAE7820A6ED4400BBD0CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98FDAE7E20A6F17600BBD0CC /* BroadcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastViewController.swift; sourceTree = "<group>"; };
+		98FDAE8020A6F19E00BBD0CC /* RecieveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieveViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +61,10 @@
 			isa = PBXGroup;
 			children = (
 				98FDAE6C20A6ED4300BBD0CC /* AppDelegate.swift */,
-				98FDAE6E20A6ED4300BBD0CC /* ViewController.swift */,
+				98FDAE6E20A6ED4300BBD0CC /* MainViewController.swift */,
+				98FDAE7E20A6F17600BBD0CC /* BroadcastViewController.swift */,
+				98FDAE8020A6F19E00BBD0CC /* RecieveViewController.swift */,
+				987E4A9A20AEC3B80055CEDC /* CoreLibs.swift */,
 				98FDAE7020A6ED4300BBD0CC /* Main.storyboard */,
 				98FDAE7320A6ED4400BBD0CC /* Assets.xcassets */,
 				98FDAE7520A6ED4400BBD0CC /* LaunchScreen.storyboard */,
@@ -96,6 +105,11 @@
 				TargetAttributes = {
 					98FDAE6820A6ED4300BBD0CC = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -135,8 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98FDAE6F20A6ED4300BBD0CC /* ViewController.swift in Sources */,
+				98FDAE8120A6F19E00BBD0CC /* RecieveViewController.swift in Sources */,
+				98FDAE6F20A6ED4300BBD0CC /* MainViewController.swift in Sources */,
+				98FDAE7F20A6F17600BBD0CC /* BroadcastViewController.swift in Sources */,
 				98FDAE6D20A6ED4300BBD0CC /* AppDelegate.swift in Sources */,
+				987E4A9B20AEC3B80055CEDC /* CoreLibs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +300,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8LU4P8SUH;
 				INFOPLIST_FILE = ThingsBeaconDebug/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,6 +319,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8LU4P8SUH;
 				INFOPLIST_FILE = ThingsBeaconDebug/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
