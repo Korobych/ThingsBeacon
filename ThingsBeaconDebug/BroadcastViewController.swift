@@ -18,7 +18,6 @@ class BroadcastViewController: UIViewController {
     var peripheralManager: CBPeripheralManager?
     let speechSynthesizer = AVSpeechSynthesizer()
     
-    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var broadcastButton: UIButton!
     @IBOutlet weak var animatedButton: UIButton!
     
@@ -26,7 +25,7 @@ class BroadcastViewController: UIViewController {
         super.viewDidLoad()
         animatedButton.layer.cornerRadius = animatedButton.frame.width / 1.65
         animatedButton.clipsToBounds = true
-        // перенести в другое место
+        broadcastButton.isHidden = true
         prepareBeaconRegion()
     }
     deinit
@@ -48,14 +47,6 @@ class BroadcastViewController: UIViewController {
     
     @IBAction func broadcastModeChange(_ sender: UIButton) {
         
-        func buttonTitleState() -> String {
-            return (self.broadcasting) ? "Начать" : "Остановить" + " раздачу"
-        }
-        
-        func labelTextStatus() -> String {
-            return (self.broadcasting) ? "Маяк ожидает включения" : "Идет раздача сигнала..."
-        }
-        
         let state: CBManagerState = self.peripheralManager!.state
         
         if (state == .poweredOff && !CLLocationManager.locationServicesEnabled() && !self.broadcasting){
@@ -72,13 +63,15 @@ class BroadcastViewController: UIViewController {
             })
             // озвучка алерта о том, что блютуз выключен
         } else if (state == .poweredOff) {
+            // quickfix
+            self.animatedButton.layer.removeAllAnimations()
             let utterance = AVSpeechUtterance(string: "Включите Bluetooth.")
             utterance.rate = 0.5
             // pitch and volume
             utterance.voice = AVSpeechSynthesisVoice(language: "ru-RU")
             let OKAction: UIAlertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             
-            let alert: UIAlertController = UIAlertController(title: "Блютуз выключен", message: "Пожалуйста, включите службы Bluetooth!", preferredStyle: .alert)
+            let alert: UIAlertController = UIAlertController(title: "Bluetooth выключен", message: "Пожалуйста, включите службы Bluetooth!", preferredStyle: .alert)
             alert.addAction(OKAction)
             self.present(alert, animated: true, completion: {
                 self.speechSynthesizer.speak(utterance)
@@ -98,9 +91,6 @@ class BroadcastViewController: UIViewController {
                 self.speechSynthesizer.speak(utterance)
             })
         } else {
-            
-            sender.setTitle(buttonTitleState(), for: UIControlState.normal)
-            self.statusLabel.text = labelTextStatus()
             self.broadcasting = !self.broadcasting
             // start broadcasting
             smartBroadcasting(status: broadcasting)
@@ -138,10 +128,17 @@ class BroadcastViewController: UIViewController {
             peripheralData[CBAdvertisementDataServiceUUIDsKey] = serviceUUIDs
             
             print("*** START BROADCASTING ***")
-            // включаем постоянную работу экрана в процессе раздачи сигнала! Уведомить через аудио! FIXIT
+            // постоянное поддержание приложения с включенным экраном + озвучка начала раздачи сигнала
+            let utterance = AVSpeechUtterance(string: "Раздача сигнала успешно начата!")
+            utterance.rate = 0.5
+            utterance.preUtteranceDelay = 4.0
+            // pitch and volume
+            utterance.voice = AVSpeechSynthesisVoice(language: "ru-RU")
+            self.speechSynthesizer.speak(utterance)
             UIApplication.shared.isIdleTimerDisabled = true
             self.peripheralManager!.startAdvertising(peripheralData)
-            runTimer()
+            // FIXIT Screen brightness
+//            runTimer()
             puslingButton(button: self.animatedButton)
         }
     }
@@ -155,8 +152,8 @@ class BroadcastViewController: UIViewController {
         _ = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(BroadcastViewController.brightnessDecreaser), userInfo: nil, repeats: false)
     }
     
+    // FIXIT  animate
     @objc func brightnessDecreaser(){
-        // FIXIT  animate
         UIScreen.main.brightness = CGFloat(0.1)
     }
     
@@ -190,21 +187,17 @@ extension BroadcastViewController: CBPeripheralManagerDelegate
         let state: CBManagerState = peripheralManager!.state
         
         if state == .poweredOff {
-            self.statusLabel.text = "Bluetooth выключен"
-            
-            if self.broadcasting {
-//                 switch off broadcasting
-                self.broadcastModeChange(self.broadcastButton)
-                print("sudenly bluetooth off")
-            }
+            print("Bluetooth выключен")
+            self.broadcastModeChange(self.broadcastButton)
         }
         
         if state == .unsupported {
-            self.statusLabel.text = "Устройство не поддерживается"
+            print("Устройство не поддерживается")
         }
         
         if state == .poweredOn {
-            self.statusLabel.text = "Готов к раздаче сигнала!"
+            print("Готов к раздаче сигнала!")
+            self.broadcastModeChange(self.broadcastButton)
         }
     }
 }

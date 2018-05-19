@@ -17,14 +17,14 @@ class RecieveViewController: UIViewController {
     
     var location: CLLocationManager?
     var peripheralManager: CBPeripheralManager?
-    // FIXIT Singletone
+    // FIXIT Singletone?
     let speechSynthesizer = AVSpeechSynthesizer()
     var notifyCounter = 0
     var beaconLostFlag = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // FIXIT Singletone
+        // FIXIT Singletone?
         location = CLLocationManager()
         location?.delegate = self
         location?.requestAlwaysAuthorization()
@@ -35,11 +35,6 @@ class RecieveViewController: UIViewController {
         self.location = nil
         self.peripheralManager = nil
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        lookForBeacons()
-//    }
     
     func lookForBeacons() {
         let uuid = UUID(uuidString: "F84A9451-DD4A-48A6-947E-608F76ED5393")!
@@ -117,6 +112,7 @@ extension RecieveViewController: CLLocationManagerDelegate
 //                self.distanceLabel.text = "Расстояние: \(String(format: "%.2f", myBeacon.accuracy)) метров"
                 self.distanceLabel.text = newDistance
                 print(newDistance)
+                print(myBeacon.accuracy)
                 break
                 
             case .unknown:
@@ -141,21 +137,44 @@ extension RecieveViewController: CLLocationManagerDelegate
         var distanceString = ""
         if myBeacon.accuracy < 1.0{
             let distRaw = String(format: "%.2f", myBeacon.accuracy)
+            // FIXIT for 13 cm +++
+            
             let cm = Int((distRaw as NSString).doubleValue * 100)
-            switch distRaw.last{
-            case "1":
-                distanceString = "\(cm) сантиметр"
-                return distanceString
-            case "2", "3", "4":
-                distanceString = "\(cm) сантиметра"
-                return distanceString
-            case "5", "6", "7", "8", "9", "0":
+            if distRaw.count == 1 {
+                switch distRaw{
+                case "1":
+                    distanceString = "\(cm) сантиметр"
+                    return distanceString
+                case "2", "3", "4":
+                    distanceString = "\(cm) сантиметра"
+                    return distanceString
+                case "5", "6", "7", "8", "9", "0":
+                    distanceString = "\(cm) сантиметров"
+                    return distanceString
+                default:
+                    // strange
+                    print("\(distanceString) сантиметров")
+                    return distanceString
+                }
+            } else if distRaw.count == 2 && Int(distRaw)! < 21{
                 distanceString = "\(cm) сантиметров"
                 return distanceString
-            default:
-                // wtf
-                print("\(distanceString) сантиметров")
-                return distanceString
+            } else{
+                switch distRaw.last{
+                case "1":
+                    distanceString = "\(cm) сантиметр"
+                    return distanceString
+                case "2", "3", "4":
+                    distanceString = "\(cm) сантиметра"
+                    return distanceString
+                case "5", "6", "7", "8", "9", "0":
+                    distanceString = "\(cm) сантиметров"
+                    return distanceString
+                default:
+                    // strange
+                    print("\(distanceString) сантиметров")
+                    return distanceString
+                }
             }
         } else if myBeacon.accuracy < 10.0{
             let distRaw = String(format: "%.0f", myBeacon.accuracy)
@@ -170,7 +189,7 @@ extension RecieveViewController: CLLocationManagerDelegate
                 distanceString = "\(distRaw) метров"
                 return distanceString
             default:
-                // wtf
+                // strange
                 print("\(distanceString) метров")
                 return distanceString
             }
@@ -190,7 +209,7 @@ extension RecieveViewController: CLLocationManagerDelegate
                 distanceString = "\(distRaw) метров"
                 return distanceString
             default:
-                // wtf
+                // strange
                 print("\(distanceString) метров")
                 return distanceString
             }
@@ -207,7 +226,7 @@ extension CLProximity {
         case 1: return "Вплотную" // immediate
         case 2: return "Рядом" // near
         case 3: return "Далеко" // far
-        default: return "невозможно определить" //can't determine
+        default: return "Невозможно определить" //can't determine
         }
     }
 }
