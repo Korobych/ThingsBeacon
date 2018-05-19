@@ -136,9 +136,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2e-bn-VDs">
-                                <rect key="frame" x="119" y="272" width="137" height="78"/>
+                                <rect key="frame" x="105" y="109" width="164" height="46"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Start Broadcast">
+                                <state key="normal" title="Начать раздачу">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -146,7 +146,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Broadcast" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="UuT-t4-1hg">
-                                <rect key="frame" x="50" y="51" width="275" height="20.5"/>
+                                <rect key="frame" x="50" y="51" width="275" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -162,32 +162,44 @@
                                     <action selector="backButtonTapped:" destination="jZa-NS-fAk" eventType="touchUpInside" id="fsj-yi-bVI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKX-wS-ZQA">
+                                <rect key="frame" x="92" y="238.5" width="189" height="189"/>
+                                <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hKX-wS-ZQA" secondAttribute="height" multiplier="1:1" id="Gx8-eW-rKF"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="LrS-Lt-Jg9" firstAttribute="trailing" secondItem="7cv-9n-w0y" secondAttribute="trailing" constant="133" id="CiO-4p-Dd7"/>
+                            <constraint firstItem="hKX-wS-ZQA" firstAttribute="centerX" secondItem="z2e-bn-VDs" secondAttribute="centerX" id="F6m-VR-Mhh"/>
+                            <constraint firstItem="7cv-9n-w0y" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hKX-wS-ZQA" secondAttribute="bottom" constant="46" id="Lgo-vW-o1q"/>
                             <constraint firstItem="UuT-t4-1hg" firstAttribute="leading" secondItem="LrS-Lt-Jg9" secondAttribute="leading" constant="50" id="OOY-47-k7V"/>
-                            <constraint firstItem="LrS-Lt-Jg9" firstAttribute="trailing" secondItem="z2e-bn-VDs" secondAttribute="trailing" constant="119" id="RxG-Ty-l1I"/>
+                            <constraint firstItem="LrS-Lt-Jg9" firstAttribute="trailing" secondItem="z2e-bn-VDs" secondAttribute="trailing" constant="106" id="RxG-Ty-l1I"/>
                             <constraint firstItem="LrS-Lt-Jg9" firstAttribute="trailing" secondItem="UuT-t4-1hg" secondAttribute="trailing" constant="50" id="VFW-Fa-RrR"/>
-                            <constraint firstItem="LrS-Lt-Jg9" firstAttribute="bottom" secondItem="7cv-9n-w0y" secondAttribute="bottom" constant="83" id="jhg-QU-W4X"/>
-                            <constraint firstItem="LrS-Lt-Jg9" firstAttribute="bottom" secondItem="z2e-bn-VDs" secondAttribute="bottom" constant="317" id="jjx-4g-gcR"/>
-                            <constraint firstItem="z2e-bn-VDs" firstAttribute="leading" secondItem="LrS-Lt-Jg9" secondAttribute="leading" constant="119" id="kz1-BF-hxe"/>
-                            <constraint firstItem="z2e-bn-VDs" firstAttribute="top" secondItem="UuT-t4-1hg" secondAttribute="bottom" constant="200.5" id="oyy-PF-SDc"/>
+                            <constraint firstItem="hKX-wS-ZQA" firstAttribute="centerY" secondItem="gco-Mw-Flf" secondAttribute="centerY" id="c1O-YS-eqH"/>
+                            <constraint firstItem="LrS-Lt-Jg9" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="7cv-9n-w0y" secondAttribute="bottom" constant="83" id="jhg-QU-W4X"/>
+                            <constraint firstItem="LrS-Lt-Jg9" firstAttribute="bottom" secondItem="z2e-bn-VDs" secondAttribute="bottom" constant="512" id="jjx-4g-gcR"/>
+                            <constraint firstItem="z2e-bn-VDs" firstAttribute="leading" secondItem="LrS-Lt-Jg9" secondAttribute="leading" constant="105" id="kz1-BF-hxe"/>
+                            <constraint firstItem="z2e-bn-VDs" firstAttribute="top" secondItem="UuT-t4-1hg" secondAttribute="bottom" constant="37.5" id="oyy-PF-SDc"/>
                             <constraint firstItem="7cv-9n-w0y" firstAttribute="leading" secondItem="LrS-Lt-Jg9" secondAttribute="leading" constant="132" id="swV-Di-Tza"/>
+                            <constraint firstItem="hKX-wS-ZQA" firstAttribute="leading" secondItem="LrS-Lt-Jg9" secondAttribute="leading" constant="92" id="tP0-jC-2NV"/>
                             <constraint firstItem="UuT-t4-1hg" firstAttribute="top" secondItem="LrS-Lt-Jg9" secondAttribute="top" constant="31" id="vrn-0V-1DS"/>
-                            <constraint firstItem="7cv-9n-w0y" firstAttribute="top" secondItem="z2e-bn-VDs" secondAttribute="bottom" constant="124" id="yhx-9S-bOB"/>
+                            <constraint firstItem="7cv-9n-w0y" firstAttribute="top" secondItem="z2e-bn-VDs" secondAttribute="bottom" constant="319" id="yhx-9S-bOB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LrS-Lt-Jg9"/>
                     </view>
                     <navigationItem key="navigationItem" title="Broadcast Mode" id="FHL-6Z-lli"/>
                     <connections>
+                        <outlet property="animatedButton" destination="hKX-wS-ZQA" id="Adk-De-bJS"/>
                         <outlet property="broadcastButton" destination="z2e-bn-VDs" id="d86-GX-ARa"/>
                         <outlet property="statusLabel" destination="UuT-t4-1hg" id="wPa-ic-2Mv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ha4-2r-9UX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876" y="-209"/>
+            <point key="canvasLocation" x="1876" y="-209.14542728635683"/>
         </scene>
     </scenes>
     <resources>

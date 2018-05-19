@@ -36,10 +36,10 @@ class RecieveViewController: UIViewController {
         self.peripheralManager = nil
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        lookForBeacons()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        lookForBeacons()
+//    }
     
     func lookForBeacons() {
         let uuid = UUID(uuidString: "F84A9451-DD4A-48A6-947E-608F76ED5393")!
@@ -64,6 +64,7 @@ extension RecieveViewController: CLLocationManagerDelegate
     {
         
         if status == .authorizedAlways{
+            lookForBeacons()
             print("Always in usage") }
         else {
             if status == .authorizedWhenInUse{
@@ -96,11 +97,14 @@ extension RecieveViewController: CLLocationManagerDelegate
     {
         if beacons.count != 0{
             let myBeacon = beacons.first!
-            
+            var newDistance = ""
+            newDistance = prepareDistanceString(myBeacon: myBeacon)
             switch myBeacon.proximity {
             case .near, .immediate, .far:
-                if notifyCounter % 3  == 0 {
-                    let utterance = AVSpeechUtterance(string: "\(String(format: "%.2f", myBeacon.accuracy)) метра")
+                if notifyCounter % 4  == 0 {
+//                    newDistance = prepareDistanceString(myBeacon: myBeacon)
+//                    let utterance = AVSpeechUtterance(string: "\(String(format: "%.2f", myBeacon.accuracy)) метра")
+                    let utterance = AVSpeechUtterance(string: "\(newDistance)")
                     utterance.rate = 0.5
                     // pitch and volume
                     utterance.voice = AVSpeechSynthesisVoice(language: "ru-RU")
@@ -108,9 +112,11 @@ extension RecieveViewController: CLLocationManagerDelegate
                 }
                 self.notifyCounter += 1
                 self.beaconLostFlag = false
-        
                 self.proximityLabel.text = myBeacon.proximity.stringValue()
-                self.distanceLabel.text = "Distance:  \(String(format: "%.2f", myBeacon.accuracy))m"
+                // FIXIT
+//                self.distanceLabel.text = "Расстояние: \(String(format: "%.2f", myBeacon.accuracy)) метров"
+                self.distanceLabel.text = newDistance
+                print(newDistance)
                 break
                 
             case .unknown:
@@ -122,29 +128,86 @@ extension RecieveViewController: CLLocationManagerDelegate
                     self.speechSynthesizer.speak(utterance)
                     self.beaconLostFlag = true
                 }
-                self.proximityLabel.text = myBeacon.proximity.stringValue()
-                self.distanceLabel.text = "Beacon out of range"
+//                self.proximityLabel.text = myBeacon.proximity.stringValue()
+                print("proximity - \(myBeacon.proximity.stringValue())")
+                self.distanceLabel.text = "Маяк вне зоны доступа"
                 break
             }
         }
        
     }
     
-    
-    
-    
-    
+    func prepareDistanceString(myBeacon: CLBeacon) -> String {
+        var distanceString = ""
+        if myBeacon.accuracy < 1.0{
+            let distRaw = String(format: "%.2f", myBeacon.accuracy)
+            let cm = Int((distRaw as NSString).doubleValue * 100)
+            switch distRaw.last{
+            case "1":
+                distanceString = "\(cm) сантиметр"
+                return distanceString
+            case "2", "3", "4":
+                distanceString = "\(cm) сантиметра"
+                return distanceString
+            case "5", "6", "7", "8", "9", "0":
+                distanceString = "\(cm) сантиметров"
+                return distanceString
+            default:
+                // wtf
+                print("\(distanceString) сантиметров")
+                return distanceString
+            }
+        } else if myBeacon.accuracy < 10.0{
+            let distRaw = String(format: "%.0f", myBeacon.accuracy)
+            switch distRaw{
+            case "1":
+                distanceString = "\(distRaw) метр"
+                return distanceString
+            case "2", "3", "4":
+                distanceString = "\(distRaw) метра"
+                return distanceString
+            case "5", "6", "7", "8", "9", "0":
+                distanceString = "\(distRaw) метров"
+                return distanceString
+            default:
+                // wtf
+                print("\(distanceString) метров")
+                return distanceString
+            }
+        } else if myBeacon.accuracy < 20.0{
+            let distRaw = String(format: "%.0f", myBeacon.accuracy)
+            return "\(distRaw) метров"
+        } else {
+            let distRaw = String(format: "%.0f", myBeacon.accuracy)
+            switch distRaw.last{
+            case "1":
+                distanceString = "\(distRaw) метр"
+                return distanceString
+            case "2", "3", "4":
+                distanceString = "\(distRaw) метра"
+                return distanceString
+            case "5", "6", "7", "8", "9", "0":
+                distanceString = "\(distRaw) метров"
+                return distanceString
+            default:
+                // wtf
+                print("\(distanceString) метров")
+                return distanceString
+            }
+        }
+    }
+
 }
 
 extension CLProximity {
     
     func stringValue() -> String {
         switch rawValue {
-        case 0: return "unknown"
-        case 1: return "immediate"
-        case 2: return "near"
-        case 3: return "far"
-        default: return "can't determine"
+        case 0: return "Неизвестно" //unknown
+        case 1: return "Вплотную" // immediate
+        case 2: return "Рядом" // near
+        case 3: return "Далеко" // far
+        default: return "невозможно определить" //can't determine
         }
     }
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		987E4A9B20AEC3B80055CEDC /* CoreLibs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E4A9A20AEC3B80055CEDC /* CoreLibs.swift */; };
 		98FDAE6D20A6ED4300BBD0CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FDAE6C20A6ED4300BBD0CC /* AppDelegate.swift */; };
 		98FDAE6F20A6ED4300BBD0CC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98FDAE6E20A6ED4300BBD0CC /* MainViewController.swift */; };
 		98FDAE7220A6ED4300BBD0CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98FDAE7020A6ED4300BBD0CC /* Main.storyboard */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		987E4A9A20AEC3B80055CEDC /* CoreLibs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLibs.swift; sourceTree = "<group>"; };
 		98FDAE6920A6ED4300BBD0CC /* ThingsBeaconDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThingsBeaconDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98FDAE6C20A6ED4300BBD0CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98FDAE6E20A6ED4300BBD0CC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 				98FDAE6E20A6ED4300BBD0CC /* MainViewController.swift */,
 				98FDAE7E20A6F17600BBD0CC /* BroadcastViewController.swift */,
 				98FDAE8020A6F19E00BBD0CC /* RecieveViewController.swift */,
-				987E4A9A20AEC3B80055CEDC /* CoreLibs.swift */,
 				98FDAE7020A6ED4300BBD0CC /* Main.storyboard */,
 				98FDAE7320A6ED4400BBD0CC /* Assets.xcassets */,
 				98FDAE7520A6ED4400BBD0CC /* LaunchScreen.storyboard */,
@@ -153,7 +150,6 @@
 				98FDAE6F20A6ED4300BBD0CC /* MainViewController.swift in Sources */,
 				98FDAE7F20A6F17600BBD0CC /* BroadcastViewController.swift in Sources */,
 				98FDAE6D20A6ED4300BBD0CC /* AppDelegate.swift in Sources */,
-				987E4A9B20AEC3B80055CEDC /* CoreLibs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
