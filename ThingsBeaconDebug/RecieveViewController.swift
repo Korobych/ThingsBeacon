@@ -141,8 +141,10 @@ extension RecieveViewController: CLLocationManagerDelegate
             // FIXIT for 13 cm +++
             
             let cm = Int((distRaw as NSString).doubleValue * 100)
-            if distRaw.count == 1 {
-                switch distRaw{
+            print(distRaw)
+            print(cm)
+            if cm < 10 {
+                switch distRaw.last{
                 case "1":
                     distanceString = "\(cm) сантиметр"
                     return distanceString
@@ -157,7 +159,7 @@ extension RecieveViewController: CLLocationManagerDelegate
                     print("\(distanceString) сантиметров")
                     return distanceString
                 }
-            } else if distRaw.count == 2 && Int(distRaw)! < 21{
+            } else if cm < 21{
                 distanceString = "\(cm) сантиметров"
                 return distanceString
             } else{
