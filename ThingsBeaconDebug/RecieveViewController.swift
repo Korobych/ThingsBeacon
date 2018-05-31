@@ -126,7 +126,8 @@ extension RecieveViewController: CLLocationManagerDelegate
                 }
 //                self.proximityLabel.text = myBeacon.proximity.stringValue()
                 print("proximity - \(myBeacon.proximity.stringValue())")
-                self.distanceLabel.text = "Маяк вне зоны доступа"
+                self.proximityLabel.text = myBeacon.proximity.stringValue()
+                self.distanceLabel.text = "Вне зоны доступа"
                 break
             }
         }

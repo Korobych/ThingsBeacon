@@ -292,7 +292,7 @@
 		98FDAE7C20A6ED4400BBD0CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = BeaconIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8LU4P8SUH;
 				INFOPLIST_FILE = ThingsBeaconDebug/Info.plist;
@@ -311,7 +311,7 @@
 		98FDAE7D20A6ED4400BBD0CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = BeaconIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F8LU4P8SUH;
 				INFOPLIST_FILE = ThingsBeaconDebug/Info.plist;
